@@ -232,19 +232,13 @@ class TruChain(App):
             except Exception as e:
                 pass
 
+        print(retrievers)
+
         if len(retrievers) == 0:
             raise ValueError("Cannot find any `BaseRetriever` in app.")
 
-        if len(retrievers) > 1:
-            raise ValueError(
-                "Found more than one `BaseRetriever` in app:\n\t" + \
-                ("\n\t".join(map(
-                    lambda lr: f"{type(lr[1])} at {lr[0]}",
-                    retrievers)))
-            )
-
         return (
-            Select.RecordCalls + retrievers[0][0]
+            Select.RecordCalls + retrievers[-1][0]
         ).get_relevant_documents.rets
 
     def main_input(

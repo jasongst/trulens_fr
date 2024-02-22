@@ -106,11 +106,12 @@ provider = LiteLLM(
                     "role": "system",
                     "content": prompt
                 }],
+                max_tokens=20000,
                 **kwargs, **self.completion_args
             )
         elif messages is not None:
             comp = completion(
-                model=self.model_engine, messages=messages, **kwargs, **self.completion_args
+                model=self.model_engine, messages=messages, max_tokens=20000, **kwargs, **self.completion_args
             )
 
         else:

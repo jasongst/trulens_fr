@@ -62,7 +62,9 @@ class LiteLLM(LLMProvider):
         if completion_kwargs is None:
             completion_kwargs = {}
 
-        if model_engine.startswith("azure/") and (completion_kwargs is None or "api_base" not in completion_kwargs):
+        if model_engine.startswith("azure/") and (completion_kwargs is None or
+                                                  "api_base"
+                                                  not in completion_kwargs):
             raise ValueError(
                 "Azure model engine requires 'api_base' parameter to litellm completions. "
                 "Provide it to LiteLLM provider in the 'completion_kwargs' parameter:"
@@ -84,8 +86,7 @@ provider = LiteLLM(
         self_kwargs['litellm_provider'] = litellm_provider
         self_kwargs['completion_args'] = completion_kwargs
         self_kwargs['endpoint'] = LiteLLMEndpoint(
-            litellm_provider=litellm_provider,
-            **kwargs
+            litellm_provider=litellm_provider, **kwargs
         )
 
         super().__init__(

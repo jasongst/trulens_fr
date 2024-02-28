@@ -357,6 +357,8 @@ class TruLlama(App):
         # here in case langchain does something special between them.
 
         if isinstance(self.app, BaseQueryEngine) or isinstance(self.app, BaseChatEngine):
+            ret = self.app.query(human)
+        elif isinstance(self.app, BaseChatEngine):
             ret = self.app.chat(human)
         else:
             raise RuntimeError(

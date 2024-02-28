@@ -688,7 +688,7 @@ class Feedback(FeedbackDefinition):
         arg_vals = {}
 
         for k, v in self.selectors.items():
-            if isinstance(v, Select.Chat):
+            if isinstance(v, Select.Query):
                 q = v
 
             else:
@@ -703,7 +703,7 @@ class Feedback(FeedbackDefinition):
                     f"Query {q} does not indicate whether it is about a record or about a app."
                 )
 
-            q_within_o = Select.Chat(path=q.path[1:])
+            q_within_o = Select.Query(path=q.path[1:])
             try:
                 arg_vals[k] = list(q_within_o.get(o))
             except Exception as e:

@@ -700,6 +700,9 @@ class App(AppDefinition, WithInstrumentCallbacks, Hashable):
         if isinstance(focus, JSON_BASES):
             return str(focus)
 
+        if callable_name(func) == 'get_relevant_documents':
+            return str(all_args[0])
+
         # Otherwise we are not sure.
         logger.warning(
             "Unsure what the main input string is for the call to %s with args %s.",

@@ -702,7 +702,7 @@ class Feedback(FeedbackDefinition):
                 raise ValueError(
                     f"Query {q} does not indicate whether it is about a record or about a app."
                 )
-
+            
             q_within_o = Select.Query(path=q.path[1:])
             try:
                 arg_vals[k] = list(q_within_o.get(o))

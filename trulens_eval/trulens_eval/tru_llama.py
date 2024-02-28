@@ -356,9 +356,7 @@ class TruLlama(App):
         # than in the `main_acall` method so we don't reuse the async version
         # here in case langchain does something special between them.
 
-        if isinstance(self.app, BaseQueryEngine):
-            ret = self.app.query(human)
-        elif isinstance(self.app, BaseChatEngine):
+        if isinstance(self.app, BaseQueryEngine) or isinstance(self.app, BaseChatEngine):
             ret = self.app.chat(human)
         else:
             raise RuntimeError(
